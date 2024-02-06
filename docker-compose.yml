@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+
+  osm:
+    labels:
+      service: "map"
+    image: registry.**/**/osm_china:2019-05-20-v3.10
+    container_name: osm
+    # volumes:
+    #   - ${DATA_VOLUME_DIR}/osm:/data
+    ports:
+      - 7070:80
+    healthcheck:
+      test: ["CMD", "curl", "-IL", "localhost:80"]
+      interval: 10s
+      start_period: 10s
+      timeout: 5s
+      retries: 3
